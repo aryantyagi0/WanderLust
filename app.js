@@ -46,7 +46,9 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     next();
 });
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL = "mongodb+srv://at9120140:aryan@cluster0.g5xalhh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
 mongoose.connect(MONGO_URL)
     .then(() => {
         console.log("Connected to DB");
