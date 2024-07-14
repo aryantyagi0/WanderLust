@@ -1,0 +1,29 @@
+<% layout("/layouts/boilerplate") %>
+<%=success%>
+<!-- <form action="/listings/new" method="GET">
+    <button>Wander Lust</button>
+</form> -->
+<div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1">
+    <% for(let listing of allListings) { %>
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+            <div class="card col listing-card">
+                <div class="card-img-wrapper" style="position: relative;">
+                    <img src="<%= listing.image %>" class="card-img-top" alt="..." style="height: 20rem;">
+                    <div class="card-image-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); color: white; display: flex; justify-content: center; align-items: center;">
+                        abcd
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <b><%= listing.title %></b><br/>
+                        <% if (listing.price != null) { %>
+                            <%= listing.price.toLocaleString("en-IN") %>/night
+                        <% } else { %>
+                            Price not available
+                        <% } %>
+                    </p>
+                </div>
+            </div>
+        </a>
+    <% } %>
+</div>

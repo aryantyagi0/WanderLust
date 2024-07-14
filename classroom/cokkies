@@ -1,0 +1,28 @@
+// cookie contain name value pair
+npm i cookie-parser
+const cookieParser=require("cookie-parser");
+app.use(cookieParser);
+app.get("/getcookies",(req,res)=>{
+    res.cookie("greet","hello");
+    // greet is name and hello is value
+    res.send("sent some cookie");
+})
+app.get("/",(req,res)=>{
+    console.log(req.cookies);
+})
+app.get("/greet",(req,res)=>{
+    let{name="anonymous"}=req.cookies;
+    res.send(`hi,${name}`);
+})
+// signed-cookies
+// it tells that whether is some tempering with cookie or not
+// app.use(cookieParser("secretcode"))
+app.get("/signedcookie",(req,res)=>{
+    res.cookie("made-in","india",{signed:true});
+    // after signed values r in unreadable form
+    res.send("signed cookie sent");
+})
+app.get("/verify",(req,res)=>{
+    console.log(req.signedCookies);
+    // signed cookies print
+});
