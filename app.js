@@ -10,6 +10,8 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const cors=require("cors")
+app.use(cors());
 
 const listingsRouter = require("./routes/listing");
 const reviewsRouter = require("./routes/review.js");
@@ -46,6 +48,7 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     next();
 });
+
 // const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const MONGO_URL = "mongodb+srv://at9120140:aryan@cluster0.g5xalhh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
