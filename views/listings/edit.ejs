@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Mapbox CSS -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
+</head>
 <% layout("/layouts/boilerplate") %>
 <div class="row">
   <div class="col-8 offset-2">
@@ -44,3 +50,18 @@
 </div>
 </div>
 <script src="/js/script.js"></script>
+<script>
+  mapboxgl.accessToken = "<%= process.env.MAP_TOKEN %>";
+  const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+
+  const map = new mapboxgl.Map({
+      container: 'map', // The ID of the element where the map will be displayed
+      style: 'mapbox://styles/mapbox/streets-v11', // Map style
+      center: coordinates, // Initial position [lng, lat]
+      zoom: 9 // Initial zoom level
+  });
+
+  new mapboxgl.Marker()
+      .setLngLat(coordinates)
+      .addTo(map);
+</script>
