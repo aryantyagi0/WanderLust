@@ -29,7 +29,7 @@
     </div>
 
     <!-- Buttons for editing and deleting if the current user is the owner -->
-     <% console.log(listings) %>
+     
     <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
         <div class="btns">
             <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-1 mb-4">Edit</a>
