@@ -69,15 +69,24 @@ module.exports.editListing = async (req, res, next) => {
 
 module.exports.updateListing = async (req, res, next) => {
     try {
-        const newListing = new Listing(req.body.listing);
-        newListing.owner = req.user._id;
-        await newListing.save();
-        req.flash("success", "New listing created");
-        res.redirect("/listings");
+        const { id } = req.params;  // Assuming you're passing the listing ID in the URL
+        const updatedListing = req.body.listing;
+
+        // Find the listing by ID and update it
+        const listing = await Listing.findByIdAndUpdate(id, updatedListing, { new: true });
+
+        if (!listing) {
+            req.flash("error", "Listing not found");
+            return res.redirect("/listings");
+        }
+
+        req.flash("success", "Listing updated successfully");
+        res.redirect(`/listings/${id}`);
     } catch (err) {
         next(err);
     }
 };
+
 
 module.exports.deleteListing = async (req, res, next) => {
     try {
