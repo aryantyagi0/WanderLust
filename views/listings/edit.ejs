@@ -9,7 +9,7 @@
   <div class="col-8 offset-2">
 
 <h3>Edit Your Listing</h3>
-<form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
+<form method="PUT" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
   <div>
     <label for="title" class="form-label">Title</label>
     <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required />
