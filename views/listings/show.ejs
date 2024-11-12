@@ -29,6 +29,7 @@
     </div>
 
     <!-- Buttons for editing and deleting if the current user is the owner -->
+     <% console.log(listings) %>
     <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
         <div class="btns">
             <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-1 mb-4">Edit</a>
@@ -56,6 +57,7 @@
                 <button class="btn btn-outline-dark">Submit</button>
             </form>
         <% } %>
+        <% console.log(listing.reviews) %>
 
         <% if (listing.reviews.length > 0) { %>
             <div class="row">
@@ -63,16 +65,16 @@
                 <% for (const review of listing.reviews) { %>
                     <div class="card col-6 mb-3">
                         <div class="card-body">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= review.username %></h5>
-                                <p class="card-text"><%= review.rating %> stars</p>
-                                <p class="card-text"><%= review.comment %></p>
-                                <% if (currUser && currUser._id.equals(review._id)) { %>
-                                    <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                                        <button type="submit" class="btn btn-sm btn-dark">Delete</button>
-                                    </form>
-                                <% } %>
-                            </div>
+                            <h5 class="card-title"><%= review.username %></h5>
+                            <p class="card-text"><%= review.rating %> stars</p>
+                            <p class="card-text"><%= review.comment %></p>
+                            <% if (currUser && currUser._id.equals(review._id)) { %>
+                                <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                                    <button type="submit" class="btn btn-sm btn-dark">Delete</button>
+                                </form>
+                            <% } %>
+                        </div>
+                    </div>
                 <% } %>
             </div>
         <% } %>
